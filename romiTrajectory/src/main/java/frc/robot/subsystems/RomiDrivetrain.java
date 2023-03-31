@@ -24,11 +24,12 @@ public class RomiDrivetrain extends SubsystemBase {
   public DifferentialDriveKinematics m_kinematics = Constants.DriveConstants.kDriveKinematics;
 
   private static final double kCountsPerRevolution = 1440.0;
-  private static final double kWheelDiameterInch = Units.metersToInches(2.75591); // 70 mm
+  public static double yAngle = 0;
+  private static final double kWheelDiameterInch = Units.inchesToMeters(2.75591); // 70 mm
 
   // The Romi has the left and right motors set to
   // PWM channels 0 and 1 respectively
-  private final Spark m_leftMotor = new Spark(0);
+  public final Spark m_leftMotor = new Spark(0);
   private final Spark m_rightMotor = new Spark(1);
 
   // The Romi has onboard encoders that are hardcoded
@@ -39,16 +40,18 @@ public class RomiDrivetrain extends SubsystemBase {
   // Set up the differential drive controller
   private final DifferentialDrive m_diffDrive = new DifferentialDrive(m_leftMotor, m_rightMotor);
 
-  private final RomiGyro m_gyro = new RomiGyro();
+  public final RomiGyro m_gyro = new RomiGyro();
 
   private final DifferentialDriveOdometry m_odometry;
 
   /** Creates a new RomiDrivetrain. */
   public RomiDrivetrain() {
     // Use inches as unit for encoder distances
+    SmartDashboard.putData("ok",m_field);
     m_leftEncoder.setDistancePerPulse((Math.PI * kWheelDiameterInch) / kCountsPerRevolution);
     m_rightEncoder.setDistancePerPulse((Math.PI * kWheelDiameterInch) / kCountsPerRevolution);
     resetEncoders();
+    m_gyro.reset();
 
     //parameters
     //angle, distance measured by left encoder, distance measured by right encoder
@@ -142,8 +145,15 @@ public class RomiDrivetrain extends SubsystemBase {
 
   @Override
   public void periodic() {
+    yAngle = m_gyro.getAngleY();
     m_odometry.update(
-        m_gyro.getRotation2d(), getLeftDistanceInch(), getRightDistanceInch());
+      m_gyro.getRotation2d(), getLeftDistanceInch(), getRightDistanceInch());
+    m_field.setRobotPose(m_odometry.getPoseMeters());
+    SmartDashboard.putNumber("y angle", m_gyro.getAngleY());
+    SmartDashboard.putNumber("help me ", m_leftMotor.get());
+    //SmartDashboard.putNumber("left distance inch", getLeftDistanceInch());
+    //SmartDashboard.putNumber("right distance inch", getRightDistanceInch());
+ 
   }
 
   @Override

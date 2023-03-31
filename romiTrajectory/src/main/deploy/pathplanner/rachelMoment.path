@@ -2,13 +2,13 @@
   "waypoints": [
     {
       "anchorPoint": {
-        "x": 1.6560914701690514,
-        "y": 3.0357278613862784
+        "x": 0.0,
+        "y": 0.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.176161853597361,
-        "y": 3.036606113241339
+        "x": 1.0,
+        "y": 0.0
       },
       "holonomicAngle": 0,
       "isReversal": false,
@@ -24,16 +24,16 @@
     },
     {
       "anchorPoint": {
-        "x": 6.9545168093247405,
-        "y": 2.8707984544790057
+        "x": 0.0,
+        "y": 0.64
       },
       "prevControl": {
-        "x": 5.851957435387557,
-        "y": 2.9490221405878114
+        "x": -2.950070224325531e-17,
+        "y": 1.12178302942195
       },
       "nextControl": {
-        "x": 8.518074567080724,
-        "y": 2.759868146191898
+        "x": 2.9500702243255304e-17,
+        "y": 0.15821697057805006
       },
       "holonomicAngle": 0,
       "isReversal": false,
@@ -49,12 +49,37 @@
     },
     {
       "anchorPoint": {
-        "x": 10.096915220213265,
-        "y": 2.9220079100638556
+        "x": 1.23,
+        "y": 0.64
       },
       "prevControl": {
-        "x": 8.550803475333298,
-        "y": 2.8146984723736552
+        "x": 1.23,
+        "y": -0.9005759012764333
+      },
+      "nextControl": {
+        "x": 1.23,
+        "y": 2.180575901276433
+      },
+      "holonomicAngle": 0,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [],
+        "executionBehavior": "parallel",
+        "waitBehavior": "none",
+        "waitTime": 0
+      }
+    },
+    {
+      "anchorPoint": {
+        "x": 1.23,
+        "y": 0.57
+      },
+      "prevControl": {
+        "x": 1.23,
+        "y": 1.3813157230899653
       },
       "nextControl": null,
       "holonomicAngle": 0,
@@ -70,15 +95,5 @@
       }
     }
   ],
-  "maxVelocity": 0.6,
-  "maxAcceleration": 0.4,
-  "isReversed": null,
-  "markers": [
-    {
-      "position": 0.0,
-      "names": [
-        "event"
-      ]
-    }
-  ]
+  "markers": []
 }
